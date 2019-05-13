@@ -70,23 +70,16 @@ class DoublyLinkedList:
     #and we can just set the head node to None
     if self.head.next is None:
       value = self.head.value
-      print("IN if statement")
-      
-      print(len(self))
       self.head = None
       self.tail = None
-      
-      print(len(self))
       self.length -= 1
       return 
 
     #otherwise we find just the head element of our list
     #save its value to the node and delete it
     else:
-      print("In else statement")
       value = self.head.value
       self.head.delete()
-      print("Head value is:", value)
       # self.head = self.head.next
       # self.head.prev = None
       self.length -= 1
@@ -119,30 +112,30 @@ class DoublyLinkedList:
     #and we can just set the head node to None
     if self.tail.prev is None:
       value = self.tail.value
-      print("IN if statement")
-      
-      print(len(self))
       self.head = None
       self.tail = None
-      
-      print(len(self))
       self.length -= 1
       return
 
     #otherwise we find just the head element of our list
     #save its value to the node and delete it
     else:
-      print("In else statement")
       value = self.tail.value
       self.tail.delete()
-      print("Head value is:", value)
       # self.head = self.head.next
       # self.head.prev = None
       self.length -= 1
       return value 
 
   def move_to_front(self, node):
-    pass
+    # if list is empty return
+    if self.length == 0:
+      return
+
+    # 
+    # else: 
+      
+    
 
   def move_to_end(self, node):
     pass
