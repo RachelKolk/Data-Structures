@@ -44,16 +44,102 @@ class DoublyLinkedList:
     return self.length
 
   def add_to_head(self, value):
-    pass
+    # init a node with a value of value
+    new_node = ListNode(value)
+
+    #if the linked list is empty
+    if self.length == 0:
+      self.head = new_node
+      self.tail = new_node
+    
+    #otherwise the next node will reference the head node
+    new_node.next = self.head    
+    #the prev node will reference the newly inserted node
+    self.head.prev = new_node
+    #the new node will become the head node
+    self.head = new_node
+    self.length += 1
 
   def remove_from_head(self):
-    pass
+    #returns if there it it an empty list
+    if self.head is None:
+      print("Does this work?")
+      return 
+   
+    #checks to see if the head node has a next ref, if it doesn't it's the only thing in the list
+    #and we can just set the head node to None
+    if self.head.next is None:
+      value = self.head.value
+      print("IN if statement")
+      
+      print(len(self))
+      self.head = None
+      self.tail = None
+      
+      print(len(self))
+      self.length -= 1
+      return 
+
+    #otherwise we find just the head element of our list
+    #save its value to the node and delete it
+    else:
+      print("In else statement")
+      value = self.head.value
+      self.head.delete()
+      print("Head value is:", value)
+      # self.head = self.head.next
+      # self.head.prev = None
+      self.length -= 1
+      return value
 
   def add_to_tail(self, value):
-    pass
+    #init a node with a value of value
+    new_node = ListNode(value)
+
+    #if the list is empty
+    if self.length == 0:
+      self.head = new_node
+      self.tail = new_node
+
+    #otherwise the next node will reference the tail node
+    new_node.prev = self.tail    
+    #the prev node will reference the newly inserted node
+    self.tail.next = new_node
+    #the new node will become the tail node
+    self.tail = new_node
+    self.length += 1
 
   def remove_from_tail(self):
-    pass
+       #returns if there it it an empty list
+    if self.tail is None:
+      print("Does this work?")
+      return 
+   
+    #checks to see if the head node has a next ref, if it doesn't it's the only thing in the list
+    #and we can just set the head node to None
+    if self.tail.prev is None:
+      value = self.tail.value
+      print("IN if statement")
+      
+      print(len(self))
+      self.head = None
+      self.tail = None
+      
+      print(len(self))
+      self.length -= 1
+      return
+
+    #otherwise we find just the head element of our list
+    #save its value to the node and delete it
+    else:
+      print("In else statement")
+      value = self.tail.value
+      self.tail.delete()
+      print("Head value is:", value)
+      # self.head = self.head.next
+      # self.head.prev = None
+      self.length -= 1
+      return value 
 
   def move_to_front(self, node):
     pass
@@ -62,7 +148,23 @@ class DoublyLinkedList:
     pass
 
   def delete(self, node):
-    pass
+    #if there is no previous ref on the node
+    if node.prev is None:
+      #the head will now equal the next node after it
+      self.head = node.next
+    else: 
+      #or if the node has a previous ref that node will now point via a next ref 
+      #to the one after the one being deleted
+      node.prev.next = node.next
+
+    #if there is no next ref on the node
+    if node.next is None:
+      #the tail will now equal the next node after it
+      self.tail = node.prev
+    else:
+      #or if the node has a next ref that node will now point via a previous ref 
+      #to the one after the one being deleted
+      node.next.prev = node.prev
     
   def get_max(self):
     pass
