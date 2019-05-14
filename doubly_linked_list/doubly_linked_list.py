@@ -194,8 +194,37 @@ class DoublyLinkedList:
       #to the one after the one being deleted
       node.next.prev = node.prev
 
-    # remove from the length for every deletion
+    # remove 1 from the length for every deletion
     self.length -= 1
     
   def get_max(self):
-    pass
+    # if the list is empty return nothing
+    if self.head is None:
+      return
+    
+    # if there is nothing in the list but the head, return the head's value
+    if self.head.next is None:
+      return self.head.value
+
+
+    # otherwise we need to iterate through the linked list and compare the values
+    else:
+      n = self.head
+      largest = self.head.value
+      print("Largest:", largest)
+      while n is not None:
+        if n.value > largest:
+          largest = n.value
+          print("Largest now:", largest)
+          n = n.next
+          
+        else:
+          n = n.next
+      return largest
+
+      
+      # for _ in range(self):
+      #   if self.head.next.value > largest:
+      #     largest = self.head.next.value
+
+    
