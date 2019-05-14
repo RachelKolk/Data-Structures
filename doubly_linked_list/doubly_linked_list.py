@@ -95,7 +95,7 @@ class DoublyLinkedList:
       self.tail = new_node
 
     #otherwise the next node will reference the tail node
-    new_node.prev = self.tail    
+    new_node.prev = self.tail   
     #the prev node will reference the newly inserted node
     self.tail.next = new_node
     #the new node will become the tail node
@@ -105,7 +105,6 @@ class DoublyLinkedList:
   def remove_from_tail(self):
        #returns if there it it an empty list
     if self.tail is None:
-      print("Does this work?")
       return 
    
     #checks to see if the head node has a next ref, if it doesn't it's the only thing in the list
@@ -128,17 +127,41 @@ class DoublyLinkedList:
       return value 
 
   def move_to_front(self, node):
-    # if list is empty return
+    # if list is empty node becomes head & tail
     if self.length == 0:
-      return
-
-    # 
-    # else: 
-      
+      self.head = node
+      self.tail = node
+  
+    #otherwise we assign the old head to point it's previous pointer at the inserted node
+    self.head.prev = node
+    #we assign the inserted node's next pointer to point at the old head
+    node.next = self.head
+    #and we assign the new inserted node to be the list head
+    self.head = node
+        
     
 
   def move_to_end(self, node):
-    pass
+    # if list is empty node becomes head & tail
+    if self.length == 0:
+      self.head = node
+      self.tail = node
+
+    #otherwise we assign the old tail to point it's next pointer at the inserted node
+    current_tail = self.tail
+    #we assign the inserted node's previous pointer to point at the old tail
+    node.prev = current_tail
+    current_tail.next = node
+    
+    #we check to see if the node that we're moving is the head
+    #if so, we set it's next pointer
+    if self.head == node:
+      self.head = node.next
+         
+    #and we assign the new inserted node to be the list as the tail
+    self.tail = node
+    node.next = None
+
 
   def delete(self, node):
     #if there is no previous ref on the node
