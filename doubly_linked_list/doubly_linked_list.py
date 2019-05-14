@@ -133,11 +133,21 @@ class DoublyLinkedList:
       self.tail = node
   
     #otherwise we assign the old head to point it's previous pointer at the inserted node
-    self.head.prev = node
+    current_head = self.head
     #we assign the inserted node's next pointer to point at the old head
-    node.next = self.head
+    node.next = current_head
     #and we assign the new inserted node to be the list head
-    self.head = node
+    current_head.next = node
+
+    
+    #we check to see if the node that we're moving is the tail
+    #if so, we set it's next pointer
+    if self.tail == node:
+      self.tail = node.prev
+         
+    #and we assign the new inserted node to be the list as the tail
+    self.head= node
+    node.prev = None
         
     
 
@@ -168,10 +178,12 @@ class DoublyLinkedList:
     if node.prev is None:
       #the head will now equal the next node after it
       self.head = node.next
+      # self.length -= 1
     else: 
       #or if the node has a previous ref that node will now point via a next ref 
       #to the one after the one being deleted
       node.prev.next = node.next
+    
 
     #if there is no next ref on the node
     if node.next is None:
@@ -181,6 +193,9 @@ class DoublyLinkedList:
       #or if the node has a next ref that node will now point via a previous ref 
       #to the one after the one being deleted
       node.next.prev = node.prev
+
+    # remove from the length for every deletion
+    self.length -= 1
     
   def get_max(self):
     pass
