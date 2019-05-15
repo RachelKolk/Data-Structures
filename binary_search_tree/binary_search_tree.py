@@ -1,71 +1,57 @@
-class Node:
+class BinarySearchTree:
   def __init__(self, value):
     self.value = value
     self.left = None
     self.right = None
 
-  def insert (self, data):
-    if self.value == data:
-      return False
 
-    elif self.value > data:
-      if self.left:
-        return self.left.insert(data)
-      else:
-        self.left = Node(data)
-        return True
+  def insert(self, value):
 
+    if self is None:
+      self = value
+
+    elif value < self.value:
+      if self.left is None:
+        self.left = BinarySearchTree(value)
+      else: 
+        self.left.insert(value)
     else:
-      if self.right:
-        return self.right.insert(data)
+      if self.right is None:
+        self.right = BinarySearchTree(value)
       else:
-        self.right = Node(data)
-        return True
+        self.right.insert(value)
 
-  def contains(self, data):
-    if self.value == data:
+
+  def contains(self, target):
+    if self.value == target:
       return True
 
-    elif self.value > data:
+    elif self.value > target:
       if self.left:
-        return self.left.contains(data)
+        return self.left.contains(target)
       else:
         return False
 
     else:
       if self.right:
-        return self.right.contains(data)
+        return self.right.contains(target)
       else: 
         return False
 
 
-class BinarySearchTree:
-  # def __init__(self, value):
-  #   self.value = value
-  #   self.left = None
-  #   self.right = None
-  def __init__(self, value):
-    self.root = None
-    self.left = None
-    self.right = None
-    self.value = value
-    
-
-  def insert(self, value):
-    if self.root:
-      return self.root.insert(value)
-    else:
-      self.root = Node(value)
-      return True
-
-  def contains(self, target):
-    if self.root:
-      return self.root.contains(target)
-    else:
-      return False
-
   def get_max(self):
-    pass
+    
+    if self.right is None:
+      return self.value
+    
+    else:
+
+      current_node = self
+
+      while current_node.right is not None:
+        current_node = current_node.right
+    return current_node.value
+
 
   def for_each(self, cb):
     pass

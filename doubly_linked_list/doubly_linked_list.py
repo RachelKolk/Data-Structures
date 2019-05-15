@@ -216,15 +216,9 @@ class DoublyLinkedList:
         if n.value > largest:
           largest = n.value
           print("Largest now:", largest)
-          n = n.next
-          
-        else:
-          n = n.next
-      return largest
-
+        n = n.next
       
-      # for _ in range(self):
-      #   if self.head.next.value > largest:
-      #     largest = self.head.next.value
+    return largest
 
+    
     
