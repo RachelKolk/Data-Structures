@@ -178,13 +178,12 @@ class DoublyLinkedList:
     if node.prev is None:
       #the head will now equal the next node after it
       self.head = node.next
-      # self.length -= 1
+     
     else: 
       #or if the node has a previous ref that node will now point via a next ref 
       #to the one after the one being deleted
       node.prev.next = node.next
     
-
     #if there is no next ref on the node
     if node.next is None:
       #the tail will now equal the next node after it
